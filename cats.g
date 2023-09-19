@@ -6,11 +6,11 @@ ckurdelak20@georgefox.edu
 
 {
 <start>
-<cat-name> is <description> cat with <fur-desc> fur and <eye-type> who likes <liked-thing> and does not
- like
-<disliked-thing>.;
+<cat-name> is <description> cat with <fur-desc> fur and <eye-type> who likes <liked-thing> and
+does not like <disliked-thing>.;
 }
 
+// TODO add more names
 {
 <cat-name>
 Kity Cat;
@@ -113,8 +113,10 @@ luxurious;
 long;
 short;
 dense;
-hairless;
 velvety;
+messy;
+silky;
+curly;
 }
 
 {
@@ -168,26 +170,88 @@ hazel;
 
 {
 <playing-type>
+playfully wrestling other cats;
+playing with the dog;
+chasing string;
+pouncing on people's feet;
+climbing tall things;
+jumping out from behind things;
+swiping at things from under the furniture;
+going on walks with humans;
+dashing out the door to the Forbidden Outside World;
+chasing the elusive red dot;
+playing fetch;
+playing with a crinkly ball;
+playing with a catnip mouse;
+playing with feather toys;
+hunting the local wildlife;
+scratching the furniture;
+scratching things that are meant to be scratched;
+hiding in cardboard boxes;
+making noises at birds;
+watching fish;
+those apps for cats;
+rolling in dirt;
 }
 
 {
 <food-type>
+fish;
+chicken;
+beef;
+pork;
+canned tuna;
+canned sardines;
+canned salmon;
+cat treats;
+canned cat food;
+dry cat food;
+foolishly trying to eat food that is bad for cats;
+sneaking food off the table;
+sneaking food out of the trash;
+eating the dog's food;
 }
 
 {
 <sleeping-type>
+sleeping in weird places;
+sleeping on the couch;
+sleeping under the couch;
+sleeping on chairs;
+sleeping under chairs;
+sleeping on beds;
+sleeping under beds;
+sleeping in the middle of the floor;
+sleeping in cardboard boxes;
+sleeping in dirty laundry;
+sleeping in clean laundry;
+sleeping in the sink;
+cuddling with humans;
+cuddling with other cats;
+cuddling with the dog;
+cuddling with only a select few humans;
+cuddling with one particular other cat;
 }
 
 {
 <disliked-thing>
-<boring-thing>;
-<scary-thing>;
-}
-
-{
-<boring-thing>
-}
-
-{
-<scary-thing>
+going to the vet;
+unfamiliar humans;
+unfamiliar cats;
+unfamiliar dogs;
+being chased by small humans;
+being picked up;
+water;
+belly rubs;
+being left at home alone for a long time;
+interacting with other cats;
+being snuck up on;
+being touched unexpectedly;
+boring food;
+empty food bowls;
+vacuum cleaners;
+cucumbers;
+car rides;
+loud noises;
+being ignored;
 }
