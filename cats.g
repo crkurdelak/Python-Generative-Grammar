@@ -1,8 +1,10 @@
 cats.g
 A grammar about cats :3
-a lot of the color and pattern names are taken from the game pixelcatsend.com
-by Ceci Kurdelak
+Ceci Kurdelak
 ckurdelak20@georgefox.edu
+
+Inspired by "funny warriors card" generator perchance.org/warriorscard
+A lot of the color and pattern names are taken from the game pixelcatsend.com
 
 {
 <start>
@@ -13,12 +15,97 @@ does not like <disliked-thing>.;
 // TODO add more names
 {
 <cat-name>
+Tom;
 Kity Cat;
 Muffin;
 Shoebox;
 Joe;
 The Destroyer;
 Babey Boy;
+Lord Vader;
+Mungojerry;
+Knife;
+Daisy;
+Shorts;
+Misty;
+Celeste;
+Breen;
+Legs;
+Ragged;
+Honey;
+Lilybeth;
+Beetle;
+Squash;
+Penny;
+Funky Town
+Gremlin;
+Boycott;
+Hoax;
+Shadowbane;
+Gorgeous;
+Lizard (Liz for short);
+Blood;
+Sabotage;
+Onomatopoeia;
+Wingding;
+Precious;
+Dragon;
+Sandwich;
+Cat;
+Inferno;
+Tall Cat;
+Small Cat;
+Nice Cat;
+Good Cat;
+Dagger;
+Irefist;
+Shrimp;
+Nevermore;
+Foot;
+Pixdale;
+Guilt;
+Loud;
+Lightly Toasted;
+Eel;
+Ears;
+Clawdia;
+Hotdog Water;
+Cheesy Potatoes;
+Darkness;
+Equinox;
+Sneakers;
+Rebop;
+Cookies;
+Chili;
+Tube Socks;
+Dog;
+Creachure;
+Wherewithal;
+Mayhem;
+Malroth, Master of Destruction;
+Ebony Dark'ness Dementia Raven Way;
+Hot Pockets;
+Puppy;
+Link;
+Sprinkles;
+Tabitha;
+Parsley;
+Minty;
+Jeffy;
+Marshmallow;
+Mini-Marshmallow;
+Yellowy;
+Seedling;
+Snuggles;
+Shadow;
+Butter;
+Acorn;
+Oyster;
+Duck;
+Icy;
+Morning;
+Winter;
+Fang;
 }
 
 {
@@ -44,7 +131,7 @@ angelic;
 adventurous;
 anxious;
 unfriendly;
-aggressive;
+excitable;
 energetic;
 }
 
@@ -62,6 +149,10 @@ dainty;
 angular;
 very chonky;
 chonktacular;
+tall;
+bulky;
+lanky;
+stubby;
 }
 
 {
