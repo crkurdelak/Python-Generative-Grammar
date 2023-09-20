@@ -12,7 +12,6 @@ A lot of the color and pattern names are taken from the game pixelcatsend.com
 does not like <disliked-thing>.;
 }
 
-// TODO add more names
 {
 <cat-name>
 Tom;
@@ -106,6 +105,7 @@ Icy;
 Morning;
 Winter;
 Fang;
+Scratch Dot MIT Dot EDU
 }
 
 {
@@ -123,6 +123,13 @@ chaotic;
 grumpy;
 timid;
 sleepy;
+nervous;
+mischievous;
+rebellious;
+relaxed;
+reserved;
+silly;
+tough;
 }
 
 {
@@ -133,6 +140,11 @@ anxious;
 unfriendly;
 excitable;
 energetic;
+affectionate;
+easy-going;
+exuberant;
+enigmatic;
+independent;
 }
 
 {
