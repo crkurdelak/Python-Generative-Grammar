@@ -36,7 +36,7 @@ Lilybeth;
 Beetle;
 Squash;
 Penny;
-Funky Town
+Funky Town;
 Gremlin;
 Boycott;
 Hoax;
