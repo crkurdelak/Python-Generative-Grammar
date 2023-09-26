@@ -8,8 +8,8 @@ A lot of the color and pattern names are taken from the game pixelcatsend.com
 
 {
 <start>
-<cat-name> is <description> cat with <fur-desc> fur and <eye-type> who likes <liked-thing> and
-does not like <disliked-thing>.;
+<cat-name> is <description> cat with <fur-desc> fur and <eye-type> who likes <liked-thing> and does not like
+<disliked-thing>.;
 }
 
 {
