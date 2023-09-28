@@ -29,9 +29,9 @@ def main():
 def read_file(filename, grammar_dict):
     """
     read_file
-    Reads a grammar file.
-    :param: filename the filename of the grammar file
-    :param: grammar_dict a dictionary to store the information from the file
+    Reads a grammar file and creates a grammar dictionary from it.
+    :param filename: the filename of the grammar file
+    :param grammar_dict: a dictionary to store the information from the file
     """
 
     grammar_file = open(filename, "r")
@@ -41,31 +41,44 @@ def read_file(filename, grammar_dict):
     is_started = False
     # true if currently parsing a production, else false
     is_in_production = False
+    current_key = ""
 
     for line in lines:
         print(line)
-        # TODO extract data from line
+        # ignore empty lines
+        if line[0] != "\n":
+            # ignore everything up until the first "{"
+            if line[0] == "{" :
+                is_started = True
+            if is_started:
+                # if line starts with "{", it is the start of a new production
+                if line[0] == "{":
+                    # we do not allow files with nested brackets
+                    if is_in_production:
+                        raise RuntimeError("Invalid File")
+                    else:
+                        is_in_production = True
 
-        ## if line starts with "{", is_started = true
-        # ignore everything up until the first "{"
-        ## if is_started:
-            # if line starts with "{", it is the start of a new production
-            ## if current line starts with "{":
-                ## if is_in_production, throw exception and exit, we do not allow files with nested brackets
-                ## else, is_in_production = True
+                # this is mutually exclusive because we don't want the "{" added to the dict
+                elif is_in_production:
+                    # first line after "{" should be name of production surrounded by "<>"
+                    # last character of each line is a /n, so check second to last character
+                    if line[0] == "<" and line[-2] == ">":
+                        # add contents of "<>" to dict as key, with an empty set as its value
+                        current_key = line[1:-2]
+                        grammar_dict[current_key] = set()
 
-            # this is mutually exclusive because we don't want the "{" added to the dict
-            ## else if is_in_production:
-                # first line after "{" should be name of production surrounded by "<>"
-                ## if next line surrounded in "<>"
-                    ## add contents of "<>" to dict as key, with an empty set as its value
+                    # else if current line ends with "}"
+                    elif (len(line) == 1 and line[0] == "}") or line[-2] == "}":
+                        is_in_production = False
+                    # everything between "<>" and "}" should be semicolon-separated list of lexemes, one on each line
+                    else:
+                        # add line as value to current key
+                        grammar_dict[current_key].add(line[0:-2])
 
-                ## else if current line ends with "}"
-                    ## is_in_production = false
-                # everything between "<>" and "}" should be semicolon-separated list of lexemes, one on each line
-                ## else add line as value to current key
-
-        ## if current line is end of file and is_in_production, throw exception and exit, the file is bad
+    # if is_in_production after iteration is over, throw exception and exit, the file is bad
+    if is_in_production:
+        raise RuntimeError("Invalid File")
 
 
 def generate_sentence(grammar_dict):
