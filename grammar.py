@@ -6,7 +6,7 @@ ckurdelak20@georgefox.edu
 """
 
 import sys
-
+import random
 
 def main():
     """
@@ -22,8 +22,7 @@ def main():
     read_file(filename, grammar_dict)
 
     # generate the sentence
-    sentence = generate_sentence(grammar_dict)
-    print(sentence)
+    print(generate_sentence(grammar_dict))
 
 
 def read_file(filename, grammar_dict):
@@ -37,6 +36,7 @@ def read_file(filename, grammar_dict):
     grammar_file = open(filename, "r")
     lines = grammar_file.readlines()
 
+    # TODO handle multiple things on 1 line
     # becomes true once the first "{" is encountered
     is_started = False
     # true if currently parsing a production, else false
@@ -63,7 +63,7 @@ def read_file(filename, grammar_dict):
                 elif is_in_production:
                     # first line after "{" should be name of production surrounded by "<>"
                     # last character of each line is a /n, so check second to last character
-                    if line[0] == "<" and line[-2] == ">":
+                    if is_nonterminal(line[0]):
                         # add contents of "<>" to dict as key, with an empty set as its value
                         current_key = line[1:-2]
                         grammar_dict[current_key] = set()
@@ -88,20 +88,42 @@ def generate_sentence(grammar_dict):
     :return: a sentence generated from the grammar
     """
     sentence = "this is a placeholder"
+    sentence_parts = list()
+    sentence_stack = list()
 
     #  start at grammar_dict(<start>), push it onto stack
+    sentence_stack.append('start')
     # while stack not empty:
-        # go to production given by top of stack
-        # choose one randomly
+    while len(sentence_stack) > 0:
+        # go to production given by top of stack, choose a value randomly
+        chosen_val = random.choice(grammar_dict[sentence_stack[-1]])
 
+        individual_words = chosen_val.split(" ")
+        i = 0
         # while there are words left in chosen production and current word not surrounded by "<>":
+        while i < len(individual_words) and not is_nonterminal(individual_words[i]):
             # append word onto sentence
+            sentence_parts.append(individual_words[i])
             # next word
+            i += 1
         # if current word surrounded by "<>", push to stack
+        if is_nonterminal(individual_words[i]):
+            sentence_stack.append(individual_words[i])
         # else if no words left, pop from stack
+        else:
+            sentence_stack.pop()
 
-
+    sentence = "".join(sentence_parts)
     return sentence
 
+
+def is_nonterminal(word):
+    """
+    Returns True if the given word is a nonterminal symbol, else returns False
+    :param word: the word to check
+    :return: True if the word is a nonterminal, else returns False
+    """
+    # TODO implement
+    # must start with "<", end with ">", and contain no spaces
 
 main()
