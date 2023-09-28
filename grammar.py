@@ -36,7 +36,6 @@ def read_file(filename, grammar_dict):
     grammar_file = open(filename, "r")
     lines = grammar_file.readlines()
 
-    # TODO handle multiple things on 1 line
     # becomes true once the first "{" is encountered
     is_started = False
     # true if currently parsing a production, else false
@@ -44,7 +43,7 @@ def read_file(filename, grammar_dict):
     current_key = ""
 
     for line in lines:
-        print(line)
+        print(line) # for debug, delete later
         # ignore empty lines
         if line[0] != "\n":
             # ignore everything up until the first "{"
@@ -61,16 +60,17 @@ def read_file(filename, grammar_dict):
 
                 # this is mutually exclusive because we don't want the "{" added to the dict
                 elif is_in_production:
+                    # if current line ends with "}", it is the end of the production
+                    if (len(line) == 1 and line[0] == "}") or line[-2] == "}":
+                        is_in_production = False
+
                     # first line after "{" should be name of production surrounded by "<>"
-                    # last character of each line is a /n, so check second to last character
-                    if is_nonterminal(line[0]):
+                    # trim off "/n" character before checking
+                    elif is_nonterminal(line[0:-1]):
                         # add contents of "<>" to dict as key, with an empty set as its value
+                        # trim off brackets and newline
                         current_key = line[1:-2]
                         grammar_dict[current_key] = set()
-
-                    # else if current line ends with "}"
-                    elif (len(line) == 1 and line[0] == "}") or line[-2] == "}":
-                        is_in_production = False
                     # everything between "<>" and "}" should be semicolon-separated list of lexemes, one on each line
                     else:
                         # add line as value to current key
@@ -108,7 +108,8 @@ def generate_sentence(grammar_dict):
             i += 1
         # if current word surrounded by "<>", push to stack
         if is_nonterminal(individual_words[i]):
-            sentence_stack.append(individual_words[i])
+            # trim the angle brackets before pushing to stack
+            sentence_stack.append(individual_words[i][1:-1])
         # else if no words left, pop from stack
         else:
             sentence_stack.pop()
@@ -120,10 +121,11 @@ def generate_sentence(grammar_dict):
 def is_nonterminal(word):
     """
     Returns True if the given word is a nonterminal symbol, else returns False
+    A word is a nonterminal symbol if it starts with "<", ends with ">", and contains no spaces.
     :param word: the word to check
     :return: True if the word is a nonterminal, else returns False
     """
-    # TODO implement
     # must start with "<", end with ">", and contain no spaces
+    return word[0] == "<" and word[-1] == ">" and not " " in word
 
 main()
