@@ -41,6 +41,8 @@ def read_file(filename, grammar_dict):
     is_started = False
     # true if currently parsing a production, else false
     is_in_production = False
+    # true if current line is the first in the current production; else false
+    is_first = False
     current_key = ""
 
     for line in lines:
@@ -52,6 +54,7 @@ def read_file(filename, grammar_dict):
             if is_started:
                 # if line starts with "{", it is the start of a new production
                 if line[0] == "{":
+                    is_first = True
                     # we do not allow files with nested brackets
                     if is_in_production:
                         raise RuntimeError("Invalid File: " + line)
@@ -66,11 +69,12 @@ def read_file(filename, grammar_dict):
 
                     # first line after "{" should be name of production surrounded by "<>"
                     # trim off "/n" character before checking
-                    elif is_nonterminal(line[0:-1]):
+                    elif is_first and is_nonterminal(line[0:-1]):
                         # add contents of "<>" to dict as key, with an empty set as its value
                         # trim off brackets and newline
                         current_key = line[1:-2]
                         grammar_dict[current_key] = list()
+                        is_first = False
                     # everything between "<>" and "}" should be semicolon-separated list of lexemes, one on each line
                     else:
                         # add line as value to current key
@@ -147,15 +151,17 @@ def generate_sentence(grammar_dict):
             else:
                 sentence_stack.pop()
                 word_indices_stack.pop()
-                # increment new top of word_indices_stack
-                word_indices_stack[-1][0] += 1
+                if len(word_indices_stack) > 0:
+                    # increment new top of word_indices_stack
+                    word_indices_stack[-1][0] += 1
         else:
             sentence_stack.pop()
             word_indices_stack.pop()
-            # increment new top of word_indices_stack
-            word_indices_stack[-1][0] += 1
+            if len(word_indices_stack) > 0:
+                # increment new top of word_indices_stack
+                word_indices_stack[-1][0] += 1
 
-    sentence = "".join(sentence_parts)
+    sentence = "".join(sentence_parts) # TODO add in spaces between words
     return sentence
 
 
