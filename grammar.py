@@ -128,6 +128,8 @@ def generate_sentence(grammar_dict):
         while i < len(individual_words) and not is_nonterminal(individual_words[i]):
             # append word onto sentence
             sentence_parts.append(individual_words[i])
+            sentence_parts.append(" ")
+            #
             print(individual_words[i]) # DEBUG, DELETE LATER!
             # next word
             i += 1
