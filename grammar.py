@@ -129,8 +129,6 @@ def generate_sentence(grammar_dict):
             # append word onto sentence
             sentence_parts.append(individual_words[i])
             sentence_parts.append(" ")
-            #
-            print(individual_words[i]) # DEBUG, DELETE LATER!
             # next word
             i += 1
             word_indices_stack[-1][0] = i
